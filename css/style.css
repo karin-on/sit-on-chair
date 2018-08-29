@@ -1,0 +1,820 @@
+:root {
+    --color: #24BAA0;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+sup {
+    top: -1.5em;
+}
+
+.container {
+    width: 1050px;
+    margin: 0 auto;
+}
+
+.visuallyhidden {       /*ukryje nam labele*/
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+    white-space: nowrap; /* 1 */
+}
+
+.section-title{
+    font-size: 22px;
+    color: #575757;
+    text-transform: uppercase;
+    font-weight: 400;
+    position: relative;
+    padding-bottom: 15px;
+    margin-bottom: 45px;
+}
+
+.section-title:after {
+    content: "";
+    height: 8px;
+    width: 320px;
+    background: var(--color);
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+
+body {
+    font-family: 'Raleway', sans-serif;
+}
+
+/* -------------- NAGLOWEK STRONY ---------------- */
+
+.page-header {
+    height: 40px;
+    background: black;
+    position: relative;
+    z-index: 1000;
+}
+
+.page-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%; /*muszę nadać wysokość, zeby zadzialalo align-items*/
+}
+
+.page-logo {
+    margin: 0; /*czyszcze margines domyślny z h1*/
+    display: flex;
+    align-items: center;
+}
+
+.page-logo-link {
+    font-size: 15px;
+    text-transform: uppercase;
+    color: white;
+    text-decoration: none;
+}
+
+.page-logo span {
+    color: var(--color); /*wykorzystanie ZMIENNEJ*/
+}
+
+.page-nav {}
+.page-nav-list {
+    display: flex;
+    list-style: none;
+    margin: 0; /*UWAGA: czyszczenie domyslnych margin i padding. normalize ich nie usuwa. ew. na początku dokumentu mogę dać wszystkim ul czyszczenie*/
+    padding: 0;
+}
+.page-nav-list li {
+    position: relative;
+}
+
+
+
+.page-nav-list a {
+    color: white;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 10px 28px;
+    display: block; /*ew. inline-block. bo inaczej ginie górny padding*/
+}
+
+.page-nav-list a:hover {
+    color: var(--color);
+}
+
+.page-nav-sublist {
+    background: black;
+    list-style: none;
+    margin: 0;
+    /*padding: 0; to już mogę skasować, bo nadałam inny padding poniżej*/
+    position: absolute;
+    top: 50px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    padding: 10px 0;
+    opacity: 0; /*nie możemy dać display: none, bo display nie działa*/
+    visibility: hidden;
+    transition: 0.5s all;
+}
+
+.page-nav-list li:hover .page-nav-sublist {
+    opacity: 1;
+    visibility: visible;
+}
+
+.page-nav-sublist:before {
+    content: "";
+    width: 0;
+    height: 0;
+    border: 10px solid transparent; /*color TRANSPARENT*/
+    border-bottom-color: black;
+    display: block;
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
+.page-nav-sublist:after {
+    content: "";
+    width: 100%;
+    height: 25px;
+    background: transparent;
+    display: block;
+    position: absolute;
+    top:-25px;
+    left: 0;
+}
+
+.page-nav-sublist li {}
+.page-nav-sublist a {
+    font-weight: normal;
+    text-transform: none;
+    padding: 5px 20px;
+}
+
+
+
+/* ---- MAIN BANNER ---- */
+
+.main-banner {
+    background-image: linear-gradient(#fff, #ddd);
+}
+
+.banner {
+    height: 500px;
+    display: flex;
+}
+.banner-prev,
+.banner-next {
+    width: 95px;
+    color: var(--color);
+    font-size: 70px;
+    background: none;  /*lub transparent*/
+    border: none;  /*lub 0*/
+    transition: 0.5s all;
+    cursor: pointer;  /*buttony domyślnie nie mają pointera, dlatego trzeba dodac*/
+}
+
+.banner-prev:focus,
+.banner-next:focus {
+    outline: none;        /*nowe, nowe, nowe*/
+}
+
+.banner-prev:hover,
+.banner-next:hover {
+    color: black;
+}
+
+.banner-next {
+    order: 1;   /*liczby naturalne od 0 wzwyż*/
+}
+
+.banner-slides {
+    /*background: yellow;      !*W DOMU ZROBIĆ*!*/
+    flex-grow: 1;
+    position: relative;
+}
+
+.banner-slide1,
+.banner-slide2,
+.banner-slide3 {
+    position: absolute;
+    display: flex;      /* !!!!!!!!!!!! */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    font-size: 200px;
+    opacity: 0;
+    transition: 0.7s opacity;  /* opacity zamiast all, bo chcę tylko opacity*/
+}
+
+.banner-slide-active {
+    opacity: 1;
+    z-index: 1;     /* !!!!!!!!!!!!!! */
+}
+
+.banner-left {
+    height: 500px;
+    width: 45%;
+    position: relative;
+}
+
+.banner-image {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 75px;
+    background-image: url("../images/black_chair.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.banner-right {
+    position: relative;
+    height: 500px;
+    width: 55%;
+}
+
+.banner-title {
+    position: absolute;
+    top: 130px;
+    left: 53px;
+    margin: 0;
+    font-size: 40px;
+    text-transform: uppercase;
+    font-weight: 400;
+}
+
+.banner-title span {
+    color: var(--color);
+    font-weight: 600;
+}
+
+.banner-text {
+    position: absolute;
+    top: 203px;
+    left: 1px;
+    font-size: 14px;
+    line-height: 1.6;
+    text-align: center;
+    margin: 0 16px;
+}
+
+.banner-button {
+    position: absolute;
+    bottom: 129px;
+    left: 50%;
+    transform: translate(-50%);
+    width: 265px;
+    height: 50px;
+    font-size: 22px;
+    font-weight: 300;
+    text-transform: uppercase;
+    color: white;
+    background: var(--color);
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+
+/* ----------------  OFFER  ---------------- */
+
+.offer {
+    height: 350px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.offer-box1,
+.offer-box2 {
+    width: 330px;
+    height: 226px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    margin-bottom: 63px;
+}
+
+.offer-box1 {
+    background-image: url("../images/box1_img.jpg");
+    position: relative;
+}
+
+.offer-box2 {
+    background-image: url("../images/box2_img.jpg");
+    position: relative;
+}
+
+.offer-box1:before,
+.offer-box2:before {
+    content: '';
+    width: 330px;
+    height: 62px;
+    background: rgba(250,250,250,0.5);
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: 23px;
+}
+
+.offer-box3 {
+    width: 340px;
+    height: 253px;
+    border: 1px solid #d8d9da;
+    margin-bottom: 36px;
+    display: flex;
+    flex-direction: column;
+}
+
+.offer-box1-title:after,
+.offer-box2-title:after,
+.offer-box3-title:after {
+    content: "";
+    height: 8px;
+    width: 139px;
+    background: var(--color);
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+}
+
+.offer-box1-title,
+.offer-box2-title {
+    text-decoration: none;
+    color: black;
+    font-size: 15px;
+    font-weight: 600;
+    position: absolute;
+    top: 150px;
+    left: 20px;
+}
+
+.offer-box3-title {
+    text-decoration: none;
+    color: black;
+    font-size: 15px;
+    font-weight: 600;
+    margin-left: 20px;
+    margin-top: 35px;
+    margin-bottom: 12px;
+    position: relative;
+}
+
+.offer-box3-text {
+    font-size: 14px;
+    color: #aaa;
+    padding: 0 20px;
+    line-height: 20px;
+}
+
+
+/* ----------------  PRICE-LIST  ---------------- */
+
+.main-price-list {
+    height: 723px;
+    background: #f0f1f2;
+}
+
+.main-price-list .container {
+    position: relative;
+    padding-top: 30px;
+}
+
+.price-list-boxes {
+    height: 537px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.price-list-box1,
+.price-list-box2,
+.price-list-box3 {
+    width: 330px;
+    height: 500px;
+    border: 1px solid green;
+    position: relative;
+}
+
+.price-list-box1,
+.price-list-box3 {
+    border: 2px solid #d7d8d9;
+    border-radius: 3px;
+    background: #f8f9fa;
+}
+
+.price-list-box1:after,
+.price-list-box3:after {
+    content: '';
+    width: 50px;
+    height: 50px;
+    border: 2px solid #d7d8d9;
+    border-radius: 50%;
+    position: absolute;
+    top: -11px;
+    left: 42%;
+    transform: translate(0%, -50%);
+    background: #c1c2c3;
+    box-shadow: inset 0 0 0 13px white;
+}
+
+.price-list-box2 {
+    border: 2px solid var(--color);
+    border-radius: 3px;
+    background: var(--color);
+}
+
+.price-list-box2:after {
+    content: '';
+    width: 50px;
+    height: 50px;
+    border: 2px solid var(--color);
+    border-radius: 50%;
+    position: absolute;
+    top: -11px;
+    left: 42%;
+    transform: translate(0%, -50%);
+    background: var(--color);
+    box-shadow: inset 0 0 0 13px white;
+}
+
+
+.price-list-box-title1,
+.price-list-box-title2,
+.price-list-box-title3 {
+    font-size: 24px;
+    text-transform: uppercase;
+    font-weight: 400;
+    position: relative;  /*???*/
+    padding-bottom: 0;  /*???*/
+    margin-bottom: 0;   /*???*/
+    text-align: center;
+}
+
+.price-list-box-title1,
+.price-list-box-title3 {
+    color: var(--color);
+}
+.price-list-box-title2 {
+    color: white;
+}
+
+.price-circle1,
+.price-circle2,
+.price-circle3 {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    position: absolute;
+    left: 50%;
+    top: 15%;
+    transform: translate(-50%);
+    background: white;
+}
+
+.price-circle1,
+.price-circle3 {
+    border: 2px solid #d7d8d9;
+}
+
+.price-circle2 {
+    border: 2px solid var(--color);
+}
+
+.price1,
+.price2,
+.price3 {
+    position: absolute;
+    top: 39%;
+    left: 49%;
+    transform: translate(-50%, -50%);
+    text-transform: uppercase;
+    font-size: 42px;
+    font-weight: 600;
+}
+
+.price1,
+.price3 {
+    color: #c1c2c3;
+}
+
+.price2 {
+    color: var(--color);
+}
+
+.price-sup {
+    font-weight: 400;
+    font-size: 20px;
+    position: absolute;
+    top: 43%;
+    right: -38%;
+}
+
+.price-sup3 {
+    font-weight: 400;
+    font-size: 20px;
+    position: absolute;
+    top: 43%;
+    right: -27%;
+}
+
+.price-unit {
+    font-size: 16px;
+    font-weight: 400;
+    position: absolute;
+    top: 115%;
+    left: -28%;
+}
+
+.price-unit3 {
+    font-size: 16px;
+    font-weight: 400;
+    position: absolute;
+    top: 115%;
+    left: -9%;
+}
+
+.services-list {
+    width: 366px;
+    position: absolute;
+    top: 219px;
+    left: -40px;
+    list-style: none;
+    font-size: 24px;
+    font-weight: 300;
+    color: #959697;
+    text-align: center;
+    line-height: 43px;
+}
+
+.services-list li:first-child {
+    background: #e3e4e5;
+}
+
+.services-list li:nth-child(2) {
+    background: #f0f1f2;
+}
+
+.services-list li:nth-child(3) {
+    background: #e3e4e5;
+}
+
+.services-list li:nth-child(4) {
+    background: #f0f1f2;
+}
+
+.btn-join1,
+.btn-join2,
+.btn-join3 {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    bottom: 19px;
+    height: 34px;
+    width: 123px;
+    text-transform: uppercase;
+    font-weight: 300;
+    border-radius: 8px;
+    border: transparent;
+    cursor: pointer;
+}
+
+.btn-join1,
+.btn-join3 {
+    background: var(--color);
+    color: white;
+}
+
+.btn-join2 {
+    color: var(--color);
+    background: white;
+}
+
+
+
+
+/* ----------------  FORM  ---------------- */
+
+.main-contact .section-title {
+    margin-top: 35px;
+}
+.form {
+    display: flex;
+    justify-content: space-between;
+}
+
+.form-left {
+    width: 690px;
+}
+
+.form-right {
+    width: 340px;
+}
+
+.form-row {
+    margin-bottom: 29px;
+}
+
+.form-image {
+    height: 190px;
+    background: url(../images/red_chair.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    margin-bottom: 40px;
+}
+
+.form-image:after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 5px;
+    background-image: linear-gradient(transparent, white);
+    top: 98%;
+    position: absolute;
+}
+
+.form label {}
+
+.form input[type="text"],
+.form input[type="email"],
+.form textarea {
+    height: 65px;
+    border: 1px solid var(--color);
+    padding: 0 15px;
+    width: 100%;
+    font-size: 33px;
+    font-weight: 300;
+    color: #333;    /*to jest kolor tekstu wpisywanego*/
+    transition: 0.4s all;
+}
+
+.form input[type="text"]::placeholder,
+.form input[type="email"]::placeholder,
+.form textarea::placeholder {
+    color: #ddd;
+}
+
+.form input[type="text"]:focus,
+.form input[type="email"]:focus,
+.form textarea:focus {
+    outline: none;
+    /*border: 2px solid var(--color);    ale to nie najlepsze, bo tekst w środku się przesuwa/zmniejsza. zamiast tego shadow*/
+    box-shadow: inset 0 0 0 2px var(--color);
+}
+
+.form textarea {
+    height: 190px;
+    padding: 15px;
+    resize: none;    /* domyślnie both*/
+}
+
+.form-checkbox {        /*label*/
+    display: flex;
+    color: #aaa;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+}
+
+.form-checkbox input {
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: 50px;
+    height: 50px;
+    opacity: 0;
+}
+
+.form-checkbox input + span {
+    flex-shrink: 0;
+    margin-right: 10px;
+    display: block;
+    height: 50px;
+    width: 50px;
+    border: 1px solid var(--color);
+    position: relative;
+}
+
+.form-checkbox input + span:after {
+    content: "";
+    background: url(../images/form_ok.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    left: 50%;
+    top: 50%;
+    opacity: 0;
+    transition: 0.5s all;
+    transform: translate(-50%, -50%) scale(0.5);  /*będzie na początku 2x mniejszy*/
+}
+
+.form-checkbox input:checked + span:after {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.form .button {
+    height: 70px;
+    width: 100%;
+    border-radius: 7px;
+    font-size: 34px;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #fff;
+    background: var(--color);
+    margin-top: 28px;
+    cursor: pointer;
+}
+
+
+
+/* ---------------- FOOTER ----------------- */
+
+.main-footer {
+    height: 110px;
+    margin-top: 15px;
+}
+
+.main-footer .container {
+    display: flex;
+    /*justify-content: space-between;*/
+    height: 100%;
+    align-items: center;
+}
+
+.footer-left {
+    /*display: inline-block;*/
+    margin: 0;
+    color: #aaaaaa;
+    font-weight: normal;
+    font-size: 14px;
+    flex-grow: 1;
+}
+
+.footer-right {
+    display: flex;
+    align-items: center;
+}
+
+.footer-icons {
+    display: inline-block;
+}
+
+.icon-fr {
+    background-image: url(../images/flickr.png);
+    width: 35px;
+    height: 35px;
+    display: inline-block;
+}
+
+.icon-vim {
+    background-image: url(../images/vimeo.png);
+    width: 35px;
+    height: 35px;
+    display: inline-block;
+}
+
+.icon-pin {
+    background-image: url(../images/pinterest.png);
+    width: 35px;
+    height: 35px;
+    display: inline-block;
+}
+
+.icon-twit {
+    background-image: url(../images/twitter.png);
+    width: 35px;
+    height: 35px;
+    display: inline-block;
+}
+
+.footer-logo {
+    color: #aaaaaa;
+    text-transform: uppercase;
+    font-size: 16px;
+    padding-left: 85px;
+    display: inline-block;
+    line-height: 1;
+}
+
+.footer-logo span {
+    font-weight: bold;
+}
