@@ -15,7 +15,7 @@ sup {
     margin: 0 auto;
 }
 
-.visuallyhidden {       /*ukryje nam labele*/
+.visuallyhidden {
     border: 0;
     clip: rect(0 0 0 0);
     height: 1px;
@@ -24,7 +24,7 @@ sup {
     padding: 0;
     position: absolute;
     width: 1px;
-    white-space: nowrap; /* 1 */
+    white-space: nowrap;
 }
 
 .section-title{
@@ -65,11 +65,11 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 100%; /*muszę nadać wysokość, zeby zadzialalo align-items*/
+    height: 100%;
 }
 
 .page-logo {
-    margin: 0; /*czyszcze margines domyślny z h1*/
+    margin: 0;
     display: flex;
     align-items: center;
 }
@@ -82,21 +82,19 @@ body {
 }
 
 .page-logo span {
-    color: var(--color); /*wykorzystanie ZMIENNEJ*/
+    color: var(--color);
 }
 
 .page-nav {}
 .page-nav-list {
     display: flex;
     list-style: none;
-    margin: 0; /*UWAGA: czyszczenie domyslnych margin i padding. normalize ich nie usuwa. ew. na początku dokumentu mogę dać wszystkim ul czyszczenie*/
+    margin: 0;
     padding: 0;
 }
 .page-nav-list li {
     position: relative;
 }
-
-
 
 .page-nav-list a {
     color: white;
@@ -104,7 +102,7 @@ body {
     text-decoration: none;
     font-weight: bold;
     padding: 10px 28px;
-    display: block; /*ew. inline-block. bo inaczej ginie górny padding*/
+    display: block;
 }
 
 .page-nav-list a:hover {
@@ -115,13 +113,12 @@ body {
     background: black;
     list-style: none;
     margin: 0;
-    /*padding: 0; to już mogę skasować, bo nadałam inny padding poniżej*/
     position: absolute;
     top: 50px;
     left: 50%;
     transform: translate(-50%, 0);
     padding: 10px 0;
-    opacity: 0; /*nie możemy dać display: none, bo display nie działa*/
+    opacity: 0;
     visibility: hidden;
     transition: 0.5s all;
 }
@@ -135,7 +132,7 @@ body {
     content: "";
     width: 0;
     height: 0;
-    border: 10px solid transparent; /*color TRANSPARENT*/
+    border: 10px solid transparent;
     border-bottom-color: black;
     display: block;
     position: absolute;
@@ -179,15 +176,15 @@ body {
     width: 95px;
     color: var(--color);
     font-size: 70px;
-    background: none;  /*lub transparent*/
-    border: none;  /*lub 0*/
+    background: none;
+    border: none;
     transition: 0.5s all;
-    cursor: pointer;  /*buttony domyślnie nie mają pointera, dlatego trzeba dodac*/
+    cursor: pointer;
 }
 
 .banner-prev:focus,
 .banner-next:focus {
-    outline: none;        /*nowe, nowe, nowe*/
+    outline: none;
 }
 
 .banner-prev:hover,
@@ -196,11 +193,10 @@ body {
 }
 
 .banner-next {
-    order: 1;   /*liczby naturalne od 0 wzwyż*/
+    order: 1;
 }
 
 .banner-slides {
-    /*background: yellow;      !*W DOMU ZROBIĆ*!*/
     flex-grow: 1;
     position: relative;
 }
@@ -209,19 +205,19 @@ body {
 .banner-slide2,
 .banner-slide3 {
     position: absolute;
-    display: flex;      /* !!!!!!!!!!!! */
+    display: flex;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
     font-size: 200px;
     opacity: 0;
-    transition: 0.7s opacity;  /* opacity zamiast all, bo chcę tylko opacity*/
+    transition: 0.7s opacity;
 }
 
 .banner-slide-active {
     opacity: 1;
-    z-index: 1;     /* !!!!!!!!!!!!!! */
+    z-index: 1;
 }
 
 .banner-left {
@@ -460,9 +456,9 @@ body {
     font-size: 24px;
     text-transform: uppercase;
     font-weight: 400;
-    position: relative;  /*???*/
-    padding-bottom: 0;  /*???*/
-    margin-bottom: 0;   /*???*/
+    position: relative;
+    padding-bottom: 0;
+    margin-bottom: 0;
     text-align: center;
 }
 
@@ -660,7 +656,7 @@ body {
     width: 100%;
     font-size: 33px;
     font-weight: 300;
-    color: #333;    /*to jest kolor tekstu wpisywanego*/
+    color: #333;
     transition: 0.4s all;
 }
 
@@ -674,17 +670,16 @@ body {
 .form input[type="email"]:focus,
 .form textarea:focus {
     outline: none;
-    /*border: 2px solid var(--color);    ale to nie najlepsze, bo tekst w środku się przesuwa/zmniejsza. zamiast tego shadow*/
     box-shadow: inset 0 0 0 2px var(--color);
 }
 
 .form textarea {
     height: 190px;
     padding: 15px;
-    resize: none;    /* domyślnie both*/
+    resize: none;
 }
 
-.form-checkbox {        /*label*/
+.form-checkbox {
     display: flex;
     color: #aaa;
     align-items: center;
@@ -723,7 +718,7 @@ body {
     top: 50%;
     opacity: 0;
     transition: 0.5s all;
-    transform: translate(-50%, -50%) scale(0.5);  /*będzie na początku 2x mniejszy*/
+    transform: translate(-50%, -50%) scale(0.5);
 }
 
 .form-checkbox input:checked + span:after {
@@ -755,13 +750,11 @@ body {
 
 .main-footer .container {
     display: flex;
-    /*justify-content: space-between;*/
     height: 100%;
     align-items: center;
 }
 
 .footer-left {
-    /*display: inline-block;*/
     margin: 0;
     color: #aaaaaa;
     font-weight: normal;
