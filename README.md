@@ -21,7 +21,7 @@ A website layout for a fictional furniture company.
 
 ## Demo
 
-#### **[Sit On Chair](https://karin-on.github.io/sit-on-chair/)**
+### **[Sit On Chair](https://karin-on.github.io/sit-on-chair/)**
 
 
 
